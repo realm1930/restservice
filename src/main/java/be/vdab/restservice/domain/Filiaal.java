@@ -1,6 +1,9 @@
 package be.vdab.restservice.domain;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.math.BigDecimal;
 
 /**
@@ -10,6 +13,8 @@ import java.math.BigDecimal;
 
 @Entity
 @Table(name = "filialen")
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.FIELD)
 public class Filiaal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
