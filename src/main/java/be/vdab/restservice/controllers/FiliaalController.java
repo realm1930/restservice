@@ -35,4 +35,9 @@ public class FiliaalController {
         filiaalService.delete(id);
     }
 
+    @PostMapping
+    void post(@RequestBody Filiaal filiaal){
+        filiaalService.create(filiaal);
+    }
+
 }
