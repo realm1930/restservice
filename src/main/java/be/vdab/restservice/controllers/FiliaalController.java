@@ -1,12 +1,11 @@
 package be.vdab.restservice.controllers;
 
 import be.vdab.restservice.domain.Filiaal;
+import be.vdab.restservice.exceptions.FiliaalNietGevondenException;
 import be.vdab.restservice.services.FiliaalService;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author Arne Van Eycken
@@ -24,6 +23,11 @@ public class FiliaalController {
 
     @GetMapping("{id}")
     Filiaal get(@PathVariable long id){
-        return filiaalService.findById(id).get();
+        return filiaalService.findById(id).orElseThrow(FiliaalNietGevondenException::new);
     }
+
+    @ExceptionHandler(FiliaalNietGevondenException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    void filiaalNietGevonden() { }
+
 }
