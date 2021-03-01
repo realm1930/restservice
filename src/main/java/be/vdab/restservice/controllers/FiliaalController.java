@@ -53,4 +53,9 @@ public class FiliaalController {
                 .collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
     }
 
+    @PutMapping("{id}")
+    void put(@RequestBody @Valid Filiaal filiaal){
+        filiaalService.update(filiaal);
+    }
+
 }
