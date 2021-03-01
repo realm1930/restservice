@@ -30,4 +30,9 @@ public class FiliaalController {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     void filiaalNietGevonden() { }
 
+    @DeleteMapping("{id}")
+    void delete(@PathVariable long id){
+        filiaalService.delete(id);
+    }
+
 }
